@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angelica G. Mantilla - Virtual Assistant Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --surface: #1e293b;
+      --text-primary: #f1f5f9;
+      --accent-primary: #6366f1;
+      --accent-secondary: #22d3ee;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .main-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .gradient-border {
+      position: relative;
+    }
+    
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+    
+    .skill-tag {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: var(--accent-secondary);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: var(--accent-primary);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, #818cf8 100%);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent-primary);
+      color: var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--accent-primary);
+      color: white;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-left: 32px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent-primary);
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 24px;
+      width: 2px;
+      height: calc(100% - 16px);
+      background: linear-gradient(to bottom, var(--accent-primary), transparent);
+    }
+    
+    .timeline-item:last-child::after {
+      display: none;
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent-primary);
+      top: -100px;
+      right: -100px;
+      animation: float 20s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent-secondary);
+      bottom: 20%;
+      left: -50px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+    
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: var(--accent-primary);
+      top: 40%;
+      right: 10%;
+      animation: float 18s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, -20px) rotate(5deg); }
+      50% { transform: translate(-10px, 20px) rotate(-5deg); }
+      75% { transform: translate(-20px, -10px) rotate(3deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, 0.15);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-icon:hover {
+      background: var(--accent-primary);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 2px;
+    }
+    
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--accent-secondary);
+    }
+    
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="main-wrapper"><!-- Floating Background Shapes -->
+   <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+   </div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4" style="background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px);">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+     <div class="text-xl font-bold gradient-text">
+      AG
+     </div>
+     <div class="hidden md:flex gap-8 text-sm"><a href="#about" class="text-slate-300 hover:text-white transition">About</a> <a href="#skills" class="text-slate-300 hover:text-white transition">Skills</a> <a href="#experience" class="text-slate-300 hover:text-white transition">Experience</a> <a href="#contact" class="text-slate-300 hover:text-white transition">Contact</a>
+     </div><a href="mailto:angelicamantillagenito@gmail.com" class="btn-primary text-sm py-2 px-5 hidden sm:block" id="nav-cta">Hire Me</a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="min-h-screen flex items-center justify-center px-6 pt-20 pb-12 relative">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="available-badge mb-6 fade-in stagger-1" style="opacity: 0;"><span class="pulse-dot"></span> Available for Remote Work
+     </div>
+     <!-- Hero photo placeholder -->
+     <div class="fade-in stagger-1" style="opacity: 0;">
+      <img id="hero-photo" src="your-picture.jpg" alt="Profile picture" class="mx-auto mb-6 w-32 h-32 rounded-full object-cover" />
+     </div>
+     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 fade-in stagger-2" style="opacity: 0;" id="hero-title">Angelica G. <span class="gradient-text">Mantilla</span></h1>
+     <p class="text-xl sm:text-2xl text-slate-300 mb-4 fade-in stagger-3" style="opacity: 0;" id="hero-subtitle">Virtual Assistant | Administrative Support | Customer Service Specialist</p>
+     <p class="text-slate-400 mb-8 max-w-2xl mx-auto fade-in stagger-4" style="opacity: 0;">📍 Philippines — Helping businesses thrive with exceptional remote support</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in stagger-5" style="opacity: 0;"><a href="mailto:angelicamantillagenito@gmail.com" class="btn-primary" id="hero-cta">Let's Work Together</a> <a href="#experience" class="btn-secondary">View My Experience</a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+       <h2 class="section-title text-3xl sm:text-4xl font-display font-bold mb-8" id="summary-title">Professional Summary</h2>
+       <p class="text-slate-300 text-lg leading-relaxed mb-6" id="summary-text">Highly organized and detail-oriented professional with experience in customer service, technical support, and administrative coordination. Skilled in email communication, data entry, report preparation, and Microsoft Office applications.</p>
+       <p class="text-slate-400 leading-relaxed">Experienced in handling customer inquiries through calls and email support while maintaining accurate documentation. Adept at managing multiple tasks efficiently and supporting team operations in fast-paced environments.</p>
+      </div>
+      <div class="card p-8">
+       <h3 class="text-xl font-semibold mb-6 gradient-text">Why Work With Me?</h3>
+       <ul class="space-y-4">
+        <li class="flex items-start gap-3"><span class="text-2xl">✨</span> <span class="text-slate-300">Strong attention to detail and organizational skills</span></li>
+        <li class="flex items-start gap-3"><span class="text-2xl">🎯</span> <span class="text-slate-300">Experienced in managing high-volume tasks efficiently</span></li>
+        <li class="flex items-start gap-3"><span class="text-2xl">💬</span> <span class="text-slate-300">Excellent written and verbal communication</span></li>
+        <li class="flex items-start gap-3"><span class="text-2xl">⚡</span> <span class="text-slate-300">Quick learner with proven adaptability</span></li>
+        <li class="flex items-start gap-3"><span class="text-2xl">🌐</span> <span class="text-slate-300">Ready for remote work with reliable setup</span></li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-20 px-6" style="background: rgba(30, 41, 59, 0.5);">
+    <div class="max-w-6xl mx-auto">
+     <h2 class="section-title text-3xl sm:text-4xl font-display font-bold mb-12 text-center">Core Competencies</h2>
+     <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="card p-8">
+       <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><span class="text-2xl">💼</span> Administrative Skills</h3>
+       <div class="flex flex-wrap gap-3"><span class="skill-tag">Administrative Support</span> <span class="skill-tag">Email Management</span> <span class="skill-tag">Data Entry</span> <span class="skill-tag">Report Preparation</span> <span class="skill-tag">Documentation</span> <span class="skill-tag">Calendar Management</span>
+       </div>
+      </div>
+      <div class="card p-8">
+       <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><span class="text-2xl">🎧</span> Customer Service</h3>
+       <div class="flex flex-wrap gap-3"><span class="skill-tag">Customer Support</span> <span class="skill-tag">Technical Support</span> <span class="skill-tag">Problem Solving</span> <span class="skill-tag">Email Support</span> <span class="skill-tag">Call Handling</span>
+       </div>
+      </div>
+     </div>
+     <div class="card p-8">
+      <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><span class="text-2xl">🛠️</span> Technical Skills</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+       <div class="text-center p-4 rounded-xl" style="background: rgba(99, 102, 241, 0.1);">
+        <div class="text-3xl mb-3">
+         📊
+        </div>
+        <div class="font-medium">
+         Microsoft Office
+        </div>
+        <div class="text-sm text-slate-400">
+         Word, Excel, PowerPoint
+        </div>
+       </div>
+       <div class="text-center p-4 rounded-xl" style="background: rgba(99, 102, 241, 0.1);">
+        <div class="text-3xl mb-3">
+         🎨
+        </div>
+        <div class="font-medium">
+         Canva
+        </div>
+        <div class="text-sm text-slate-400">
+         Graphic Design
+        </div>
+       </div>
+       <div class="text-center p-4 rounded-xl" style="background: rgba(99, 102, 241, 0.1);">
+        <div class="text-3xl mb-3">
+         📧
+        </div>
+        <div class="font-medium">
+         Email Platforms
+        </div>
+        <div class="text-sm text-slate-400">
+         Outlook, Gmail
+        </div>
+       </div>
+       <div class="text-center p-4 rounded-xl" style="background: rgba(99, 102, 241, 0.1);">
+        <div class="text-3xl mb-3">
+         💻
+        </div>
+        <div class="font-medium">
+         Communication Tools
+        </div>
+        <div class="text-sm text-slate-400">
+         Teams, Zoom, Meet
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience Section -->
+   <section id="experience" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+     <h2 class="section-title text-3xl sm:text-4xl font-display font-bold mb-12">Professional Experience</h2>
+     <div class="space-y-8">
+      <div class="timeline-item">
+       <div class="card p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+         <h3 class="text-xl font-semibold gradient-text">Public Secondary School Teacher</h3><span class="text-slate-400 text-sm">2024 – Present</span>
+        </div>
+        <p class="text-indigo-300 mb-4">Department of Education – Philippines</p>
+        <ul class="space-y-2 text-slate-300">
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Manage student records, attendance tracking, and academic documentation using spreadsheets and digital tools</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Prepare reports, presentations, and instructional materials using Microsoft Word, Excel, and PowerPoint</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Communicate regularly with students and stakeholders regarding schedules and updates</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Design visual learning materials and presentation graphics using Canva</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Coordinate with faculty members to ensure smooth implementation of activities</li>
+        </ul>
+       </div>
+      </div>
+      <div class="timeline-item">
+       <div class="card p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+         <h3 class="text-xl font-semibold gradient-text">Technical Support Representative</h3><span class="text-slate-400 text-sm">2020</span>
+        </div>
+        <p class="text-indigo-300 mb-4">Concentrix – Mandaue, Cebu City</p>
+        <ul class="space-y-2 text-slate-300">
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Assisted customers through inbound calls, resolving technical issues and product concerns</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Provided step-by-step troubleshooting guidance to ensure issue resolution</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Maintained accurate records of customer interactions and technical support cases</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Delivered professional service ensuring customer satisfaction</li>
+        </ul>
+       </div>
+      </div>
+      <div class="timeline-item">
+       <div class="card p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+         <h3 class="text-xl font-semibold gradient-text">Customer Service Representative</h3><span class="text-slate-400 text-sm">2018 – 2019</span>
+        </div>
+        <p class="text-indigo-300 mb-4">ePerformax – Lahug, Cebu City</p>
+        <ul class="space-y-2 text-slate-300">
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Managed high-volume inbound and outbound customer calls</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Provided email support, responding to customer concerns and documenting solutions</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Maintained organized records of customer interactions and service cases</li>
+         <li class="flex items-start gap-2"><span class="text-cyan-400 mt-1">▸</span> Ensured professional communication and effective issue resolution</li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Education & Certifications -->
+   <section class="py-20 px-6" style="background: rgba(30, 41, 59, 0.5);">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="card p-8">
+       <h2 class="section-title text-2xl font-display font-bold mb-8">Education</h2>
+       <div class="flex items-start gap-4">
+        <div class="text-4xl">
+         🎓
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg">Bachelor of Secondary Education</h3>
+         <p class="text-indigo-300">Leyte Normal University</p>
+        </div>
+       </div>
+      </div>
+      <div class="card p-8">
+       <h2 class="section-title text-2xl font-display font-bold mb-8">Certifications</h2>
+       <div class="space-y-4">
+        <div class="flex items-start gap-4">
+         <div class="text-2xl">
+          📜
+         </div>
+         <div>
+          <h3 class="font-semibold">Customer Service Training</h3>
+          <p class="text-slate-400">ePerformax</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="text-2xl">
+          📜
+         </div>
+         <div>
+          <h3 class="font-semibold">Technical Support Training</h3>
+          <p class="text-slate-400">Concentrix</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="section-title text-3xl sm:text-4xl font-display font-bold mb-6">Let's Connect</h2>
+     <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto">Ready to bring organization, efficiency, and excellent communication to your team. Let's discuss how I can support your business goals.</p>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"><a href="mailto:angelicamantillagenito@gmail.com" class="card p-6 text-center hover:border-indigo-500 transition group">
+       <div class="contact-icon mx-auto mb-4 group-hover:bg-indigo-500"><span class="text-xl">📧</span>
+       </div>
+       <div class="font-medium mb-1">
+        Email
+       </div>
+       <div class="text-sm text-slate-400 break-all">
+        angelicamantillagenito@gmail.com
+       </div></a> <a href="tel:+639852892909" class="card p-6 text-center hover:border-indigo-500 transition group">
+       <div class="contact-icon mx-auto mb-4 group-hover:bg-indigo-500"><span class="text-xl">📱</span>
+       </div>
+       <div class="font-medium mb-1">
+        Phone
+       </div>
+       <div class="text-sm text-slate-400">
+        +63 985 289 2909
+       </div></a> <a href="https://www.linkedin.com/in/angelica-mantilla-6253133a2/" target="_blank" rel="noopener noreferrer" class="card p-6 text-center hover:border-indigo-500 transition group">
+       <div class="contact-icon mx-auto mb-4 group-hover:bg-indigo-500"><span class="text-xl">💼</span>
+       </div>
+       <div class="font-medium mb-1">
+        LinkedIn
+       </div>
+       <div class="text-sm text-slate-400">
+        View Profile
+       </div></a>
+      <div class="card p-6 text-center">
+       <div class="contact-icon mx-auto mb-4"><span class="text-xl">📍</span>
+       </div>
+       <div class="font-medium mb-1">
+        Location
+       </div>
+       <div class="text-sm text-slate-400">
+        Philippines
+       </div>
+      </div>
+     </div><a href="mailto:angelicamantillagenito@gmail.com" class="btn-primary text-lg px-10 py-4 inline-block" id="footer-cta"> Let's Work Together </a>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t" style="border-color: rgba(99, 102, 241, 0.2);">
+    <div class="max-w-6xl mx-auto text-center">
+     <p class="text-slate-400">© 2025 Angelica G. Mantilla. Open to Remote Opportunities.</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: 'Angelica G. Mantilla',
+      hero_subtitle: 'Virtual Assistant | Administrative Support | Customer Service Specialist',
+      hero_image: 'https://via.placeholder.com/150',
+      summary_text: 'Professional Summary',
+      cta_button_text: "Let's Work Together",
+      primary_color: '#6366f1',
+      secondary_color: '#22d3ee',
+      bg_color: '#0f172a',
+      surface_color: '#1e293b',
+      text_color: '#f1f5f9',
+      font_family: 'Outfit',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      // Update hero title
+      const heroTitle = document.getElementById('hero-title');
+      const nameParts = (config.hero_title || defaultConfig.hero_title).split(' ');
+      const lastName = nameParts.pop();
+      const firstName = nameParts.join(' ');
+      heroTitle.innerHTML = `${firstName} <span class="gradient-text">${lastName}</span>`;
+      
+      // Update hero subtitle
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      
+      // Update hero image
+      const heroPhoto = document.getElementById('hero-photo');
+      if (heroPhoto) {
+        heroPhoto.src = config.hero_image || defaultConfig.hero_image;
+      }
+      
+      // Update summary title
+      document.getElementById('summary-title').textContent = config.summary_text || defaultConfig.summary_text;
+      
+      // Update CTA buttons
+      const ctaText = config.cta_button_text || defaultConfig.cta_button_text;
+      document.getElementById('hero-cta').textContent = ctaText;
+      document.getElementById('footer-cta').textContent = ctaText;
+      
+      // Apply colors
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const bgColor = config.bg_color || defaultConfig.bg_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      
+      document.documentElement.style.setProperty('--accent-primary', primaryColor);
+      document.documentElement.style.setProperty('--accent-secondary', secondaryColor);
+      document.documentElement.style.setProperty('--bg-primary', bgColor);
+      document.documentElement.style.setProperty('--surface', surfaceColor);
+      document.documentElement.style.setProperty('--text-primary', textColor);
+      
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+      
+      // Apply font size
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.documentElement.style.fontSize = `${baseSize}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.bg_color || defaultConfig.bg_color,
+            set: (value) => { config.bg_color = value; window.elementSdk.setConfig({ bg_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['hero_image', config.hero_image || defaultConfig.hero_image],
+        ['summary_text', config.summary_text || defaultConfig.summary_text],
+        ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d800f1b30bbdb22',t:'MTc3Mjc4NjQ2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
