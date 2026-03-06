@@ -292,17 +292,22 @@
     </div>
    </nav><!-- Hero Section -->
    <section class="min-h-screen flex items-center justify-center px-6 pt-20 pb-12 relative">
-    <div class="max-w-4xl mx-auto text-center">
+    <div class="max-w-6xl mx-auto">
      <div class="available-badge mb-6 fade-in stagger-1" style="opacity: 0;"><span class="pulse-dot"></span> Available for Remote Work
      </div>
-     <!-- Hero photo placeholder -->
-     <div class="fade-in stagger-1" style="opacity: 0;">
-      <img id="hero-photo" src="your-picture.jpg" alt="Profile picture" class="mx-auto mb-6 w-32 h-32 rounded-full object-cover" />
-     </div>
-     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 fade-in stagger-2" style="opacity: 0;" id="hero-title">Angelica G. <span class="gradient-text">Mantilla</span></h1>
-     <p class="text-xl sm:text-2xl text-slate-300 mb-4 fade-in stagger-3" style="opacity: 0;" id="hero-subtitle">Virtual Assistant | Administrative Support | Customer Service Specialist</p>
-     <p class="text-slate-400 mb-8 max-w-2xl mx-auto fade-in stagger-4" style="opacity: 0;">📍 Philippines — Helping businesses thrive with exceptional remote support</p>
-     <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in stagger-5" style="opacity: 0;"><a href="mailto:angelicamantillagenito@gmail.com" class="btn-primary" id="hero-cta">Let's Work Together</a> <a href="#experience" class="btn-secondary">View My Experience</a>
+     <div class="flex flex-col lg:flex-row items-center gap-8">
+      <!-- Hero photo on left -->
+      <div class="fade-in stagger-1" style="opacity: 0;">
+       <img id="hero-photo" src="your-picture.jpg" alt="Profile picture" class="w-56 h-56 rounded-full object-cover" />
+      </div>
+      <!-- Names and details on right -->
+      <div class="text-center lg:text-left">
+       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 fade-in stagger-2" style="opacity: 0;" id="hero-title">Angelica G. <span class="gradient-text">Mantilla</span></h1>
+       <p class="text-xl sm:text-2xl text-slate-300 mb-4 fade-in stagger-3" style="opacity: 0;" id="hero-subtitle">Virtual Assistant | Administrative Support | Customer Service Specialist</p>
+       <p class="text-slate-400 mb-8 max-w-2xl mx-auto lg:mx-0 fade-in stagger-4" style="opacity: 0;">📍 Philippines — Helping businesses thrive with exceptional remote support</p>
+       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in stagger-5" style="opacity: 0;"><a href="mailto:angelicamantillagenito@gmail.com" class="btn-primary" id="hero-cta">Let's Work Together</a> <a href="#experience" class="btn-secondary">View My Experience</a>
+       </div>
+      </div>
      </div>
     </div>
    </section><!-- About Section -->
@@ -536,7 +541,7 @@
     const defaultConfig = {
       hero_title: 'Angelica G. Mantilla',
       hero_subtitle: 'Virtual Assistant | Administrative Support | Customer Service Specialist',
-      hero_image: 'https://via.placeholder.com/150',
+      hero_image: 'your-picture.jpg',
       summary_text: 'Professional Summary',
       cta_button_text: "Let's Work Together",
       primary_color: '#6366f1',
